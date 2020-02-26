@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <windows.h>
+
+void click(int);
+
+int main(void)
+{
+    while (1)
+    {
+        puts("输入你要点击的次数");
+        int j;
+        scanf("%d", &j);
+
+        click(j);
+    }
+    return 0;
+}
+void click(int times)
+{
+    while (times--)
+    {
+        mouse_event(MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0);
+        mouse_event(MOUSEEVENTF_LEFTUP, 0, 0, 0, 0);
+        printf("还剩 %d 次\n",times);
+    }
+}
