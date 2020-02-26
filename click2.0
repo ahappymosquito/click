@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <windows.h>
+#include <stdlib.h>
+
+POINT curpos;
+int l;
+void click(int *t ,int *x,int *y);
+
+
+int main(void)
+{
+    while (1)
+    {
+        
+        puts("输入你想让鼠标移动！位置！的次数");
+        scanf("%d",&l);
+        int j[l], m;
+        int a[l], b[l];
+        puts("现在输入你要点击坐标位置和次数（格式x，y，点击次数）点击次数不要超过32767");
+        for (int i = 0; i < l; i++)
+        {
+            scanf("%d%d%d",&a[i],&b[i],&j[i]);
+
+        }
+        
+        for (int i = 0; i < l; i++)
+        {
+            printf("location(%d,%d) time %d\n", a[i], b[i], j[i]);
+        }
+        click(j,a,b);
+
+        puts("DONE!\n输入2再来一遍(否则退出程序)");
+        if(scanf("%d",&m)==1)
+            if(m!=2)
+                exit(0);
+    }
+    return 0;
+}
+
+void click(int *t,int *x ,int *y)
+{
+    for(int n = 0;n<l;n++)
+    {
+
+    int k = t[n];
+        while (k--) //点击次数
+    {
+        SetCursorPos(x[n],y[n]);
+        mouse_event(MOUSEEVENTF_LEFTDOWN, curpos.x, curpos.y, 0, 0);
+        mouse_event(MOUSEEVENTF_LEFTUP, curpos.x, curpos.y, 0, 0);
+        printf("Success click,%d shengyu.\n", k);
+    }
+    }
+}
+
